@@ -94,14 +94,6 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    elastic-transport (8.1.0)
-      faraday (< 3)
-      multi_json
-    elasticsearch (8.4.0)
-      elastic-transport (~> 8)
-      elasticsearch-api (= 8.4.0)
-    elasticsearch-api (8.4.0)
-      multi_json
     erubi (1.11.0)
     faraday (2.6.0)
       faraday-net_http (>= 2.0, < 3.1)
@@ -149,6 +141,14 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.8-x86_64-darwin)
       racc (~> 1.4)
+    opensearch-api (2.0.2)
+      multi_json
+    opensearch-ruby (2.0.3)
+      opensearch-api (= 2.0.2)
+      opensearch-transport (~> 2.0.0)
+    opensearch-transport (2.0.1)
+      faraday (>= 1.0, < 3)
+      multi_json
     orm_adapter (0.5.0)
     public_suffix (5.0.0)
     puma (5.6.5)
@@ -257,10 +257,10 @@ DEPENDENCIES
   capybara
   debug
   devise
-  elasticsearch
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
+  opensearch-ruby
   puma (~> 5.0)
   rails (~> 7.0.4)
   sassc-rails

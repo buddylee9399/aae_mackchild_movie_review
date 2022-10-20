@@ -1,5 +1,5 @@
 class Movie < ApplicationRecord
-	searchkick
+	# searchkick
 	belongs_to :user
 	has_many :reviews
 

@@ -21,22 +21,30 @@ gem "elasticsearch"
 - image processing for storage
 - devise set for turbo, rails 7
 - from: https://dev.to/efocoder/how-to-use-devise-with-turbo-in-rails-7-9n9
-- haml for devise links
+- devise links
 
 ```
-- if user_signed_in?
-	%ul.nav.navbar-nav.navbar-right
-		%li= link_to "New Pin", new_pin_path
-		%li= link_to "Account", edit_user_registration_path
-		%li= button_to "Sign Out", destroy_user_session_path, method: :delete
-- else
-	%ul.nav.navbar-nav.navbar-right
-		%li= link_to "Sign Up", new_user_registration_path
-		%li= link_to "Sign In", new_user_session_path
-
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <% if user_signed_in? %>
+          <li><%= link_to "New Movie", new_movie_path, class: "active" %></li>
+          <li><%= link_to "Account", edit_user_registration_path %></li>
+        <% else %>
+          <li><%= link_to "Sign Up", new_user_registration_path, class: "active" %></li>
+          <li><%= link_to "Sign In", new_user_session_path, class: "active" %></li>
+        <% end %>
+      </ul>
+      <%= form_tag search_movies_path, method: :get, class: "navbar-form navbar-right", role: "search" do %>
+        <p>
+          <%= text_field_tag :search, params[:search], class: "form-control" %>
+          <%= submit_tag "Search", name: nil, class: "btn btn-default" %>
+        </p>
+      <% end %>
 ```
 
 ### searchkick/elasticsearch
+- I didnt finish setting it up
+- installing searchkick/elasticsearch: https://www.youtube.com/watch?v=jb4lrihz6_E
 - had to add elastic search gem
 - install elastic search in terminal: https://github.com/ankane/searchkick
 - https://stackoverflow.com/questions/42526394/failed-to-open-tcp-connection-to-localhost9200-connection-refused-connect2
@@ -54,6 +62,19 @@ brew services stop elasticsearch-full
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/raty/2.9.0/jquery.raty.js"></script>
 ```
 - add the images for the stars to assets/images
+- in the show page
+
+```
+<script>
+    $('.star-rating').raty({
+      path: '/assets/',
+      readOnly: true,
+      score: function() {
+            return $(this).attr('data-score');
+    }
+  });
+</script>
+```
 
 ## MODELS
 - devise user: has many movies and reviews
@@ -63,3 +84,13 @@ brew services stop elasticsearch-full
 
 ## OTHER
 - he did his own styling
+- search tag form
+
+```
+      <%= form_tag search_movies_path, method: :get, class: "navbar-form navbar-right", role: "search" do %>
+        <p>
+          <%= text_field_tag :search, params[:search], class: "form-control" %>
+          <%= submit_tag "Search", name: nil, class: "btn btn-default" %>
+        </p>
+      <% end %>
+```
