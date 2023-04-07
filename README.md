@@ -13,7 +13,8 @@ gem "sassc-rails"
 gem "image_processing", "~> 1.2"
 gem 'devise'
 gem 'searchkick'
-gem "elasticsearch" 
+# gem "elasticsearch" 
+gem "opensearch-ruby"
 ```
 - no paperclip needed
 - i didnt use bootstrap sass

@@ -1,7 +1,7 @@
 class Movie < ApplicationRecord
 	# searchkick
 	belongs_to :user
-	has_many :reviews
+	has_many :reviews, dependent: :destroy
 
 	has_one_attached :image
 	# has_attached_file :image, styles: { medium: "400x600#" }
